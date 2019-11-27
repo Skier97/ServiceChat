@@ -11,7 +11,7 @@ namespace ServiceChat.Controllers
 {
     public class UserController : ApiController
     {
-        Dictionary<int, string> messages = new Dictionary<int, string> { { 1, "message1" }, { 2, "message2" }, { 3, "message3"}, { 3, "message4"} };
+        List<Message> messages = new List<Message>() { new Message(1, 2, "mess1"), new Message(2, 1, "mess2"), new Message(2, 1, "mess3") };
         List<User> users = new List<User>() { new User(1, "Sergey", "pass1"), new User(2, "Olga", "pass2") };
 
         // GET api/values
@@ -23,14 +23,35 @@ namespace ServiceChat.Controllers
         // GET api/values/5
         public IHttpActionResult Get(int id)
         {
-            return Json(users[id]);
+            return Json(users[id - 1]);
         }
 
         // POST api/values
         [HttpPost]
-        public void AddMessage(User user, string message)
+        public void AddMessage(User userSend, User userRecip, string message)
         {
-            messages.Add(user.Id, message);
+            var mess = new Message(userSend.Id,userRecip.Id, message);
+            messages.Add(mess);
+        }
+
+        [HttpGet]
+        public IHttpActionResult ReceiveMessagesUser(List<Message> messages, User user)
+        {
+            return Json(GetMessageUser(user, messages));
+        }
+
+        public List<Message> GetMessageUser(User user, List<Message> messages)
+        {
+            var tmpListMess = new List<Message>();
+            for (int i=0; i<messages.Count; i++)
+            {
+                if(messages[i].IdRecip == user.Id)
+                {
+                    messages[i].IsRead = true;
+                    tmpListMess.Add(messages[i]);
+                }
+            }
+            return tmpListMess;
         }
 
         // PUT api/values/5
