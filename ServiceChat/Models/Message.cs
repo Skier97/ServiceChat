@@ -16,7 +16,7 @@ namespace ServiceChat.Models
         public Message(int idSend, int idRecip, string message)
         {
             this.IdSend = idSend;
-            this.IdRecip = IdRecip;
+            this.IdRecip = idRecip;
             this.TextMessage = message;
             this.Time = DateTime.Now;
             this.IsRead = false;

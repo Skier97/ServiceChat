@@ -11,8 +11,8 @@ namespace ServiceChat.Controllers
 {
     public class UserController : ApiController
     {
-        List<Message> messages = new List<Message>() { new Message(1, 2, "mess1"), new Message(2, 1, "mess2"), new Message(2, 1, "mess3") };
-        List<User> users = new List<User>() { new User(1, "Sergey", "pass1"), new User(2, "Olga", "pass2") };
+        static List<Message> messages = new List<Message>() { new Message(1, 2, "mess1"), new Message(2, 1, "mess2"), new Message(2, 1, "mess3") };
+        static List<User> users = new List<User>() { new User(1, "Sergey", "pass1"), new User(2, "Olga", "pass2") };
 
         // GET api/values
         public IHttpActionResult Get()
@@ -28,16 +28,24 @@ namespace ServiceChat.Controllers
 
         // POST api/values
         [HttpPost]
-        public void AddMessage(User userSend, User userRecip, string message)
+        public void AddMessage(Message mess)
         {
-            var mess = new Message(userSend.Id,userRecip.Id, message);
             messages.Add(mess);
         }
 
         [HttpGet]
-        public IHttpActionResult ReceiveMessagesUser(List<Message> messages, User user)
+        public IHttpActionResult IsUser(int id, string password)
         {
-            return Json(GetMessageUser(user, messages));
+            User tmpUser = null;
+            for (int i = 0; i < users.Count; i++)
+            {
+                if ((users[i].Id == id) && (users[i].Password == password))
+                {
+                    tmpUser = users[i];
+                    
+                }
+            }
+            return Json(GetMessageUser(tmpUser, messages));
         }
 
         public List<Message> GetMessageUser(User user, List<Message> messages)
@@ -45,7 +53,7 @@ namespace ServiceChat.Controllers
             var tmpListMess = new List<Message>();
             for (int i=0; i<messages.Count; i++)
             {
-                if(messages[i].IdRecip == user.Id)
+                if((messages[i].IdRecip == user.Id) && (messages[i].IsRead == false))
                 {
                     messages[i].IsRead = true;
                     tmpListMess.Add(messages[i]);
