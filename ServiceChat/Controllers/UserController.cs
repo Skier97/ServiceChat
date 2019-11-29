@@ -11,18 +11,23 @@ namespace ServiceChat.Controllers
 {
     public class UserController : ApiController
     {
-        static List<Message> messages = new List<Message>() { new Message(1, 2, "mess1"), new Message(2, 1, "mess2"), new Message(2, 1, "mess3") };
-        static List<User> users = new List<User>() { new User(1, "Sergey", "pass1"), new User(2, "Olga", "pass2") };
+        //static List<Message> messages = new List<Message>() { new Message(1, 2, "mess1"), new Message(2, 1, "mess2"), new Message(2, 1, "mess3") };
+        //static List<User> users = new List<User>() { new User(1, "Sergey", "pass1"), new User(2, "Olga", "pass2") };
+        List<Message> messages;
+        List<User> users;
+        FileDb db = new FileDb();
 
         // GET api/values
         public IHttpActionResult Get()
         {
+            users = db.ReadUserFromFile();
             return Json(users);
         }
 
         // GET api/values/5
         public IHttpActionResult Get(int id)
         {
+            users = db.ReadUserFromFile();
             return Json(users[id - 1]);
         }
 
@@ -30,13 +35,17 @@ namespace ServiceChat.Controllers
         [HttpPost]
         public void AddMessage(Message mess)
         {
+            messages = db.ReadMessFromFile();
             messages.Add(mess);
+            db.UpdateDbMess(messages);
         }
 
         [HttpGet]
         public IHttpActionResult IsUser(int id, string password)
         {
             User tmpUser = null;
+            users = db.ReadUserFromFile();
+            messages = db.ReadMessFromFile();
             for (int i = 0; i < users.Count; i++)
             {
                 if ((users[i].Id == id) && (users[i].Password == password))
