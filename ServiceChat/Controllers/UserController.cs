@@ -68,6 +68,7 @@ namespace ServiceChat.Controllers
                     tmpListMess.Add(messages[i]);
                 }
             }
+            db.UpdateDbMess(messages);
             return tmpListMess;
         }
 
