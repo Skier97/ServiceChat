@@ -30,7 +30,7 @@ namespace ServiceChat
             }
         }
 
-        public List<Message> ReadMessFromFile()
+        public List<Message> ReadMessFromDb()
         {
             var colMess = new List<Message>();
             using (var sr = new StreamReader(WebConfigurationManager.AppSettings["WayToDBMess"]))
@@ -42,7 +42,7 @@ namespace ServiceChat
             return colMess;
         }
 
-        public List<User> ReadUserFromFile()
+        public List<User> ReadUserFromDb()
         {
             var colUser = new List<User>();
             using (var sr = new StreamReader(WebConfigurationManager.AppSettings["WayToDBUser"]))

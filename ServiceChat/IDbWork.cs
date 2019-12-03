@@ -14,7 +14,7 @@ namespace ServiceChat
     {
         void UpdateDbMess(List<Message> messages);
         void UpdateDbUsers(List<User> users);
-        List<Message> ReadMessFromFile(); //Неудачное наименование
-        List<User> ReadUserFromFile();
+        List<Message> ReadMessFromDb(); 
+        List<User> ReadUserFromDb();
     }
 }
