@@ -13,6 +13,8 @@ namespace ServiceChat.Controllers
     {
         //static List<Message> messages = new List<Message>() { new Message(1, 2, "mess1"), new Message(2, 1, "mess2"), new Message(2, 1, "mess3") };
         //static List<User> users = new List<User>() { new User(1, "Sergey", "pass1"), new User(2, "Olga", "pass2") };
+
+            //В веб конфиге разобраться с путями, задавать относитльный путь до дб
         List<Message> messages;
         List<User> users;
         FileDb db = new FileDb();
@@ -24,7 +26,8 @@ namespace ServiceChat.Controllers
             return Json(users);
         }
 
-        // GET api/values/5
+        // GET api/values/5 //Не забывай удалять лишние комменты
+        
         public IHttpActionResult Get(int id)
         {
             users = db.ReadUserFromFile();
@@ -32,7 +35,7 @@ namespace ServiceChat.Controllers
         }
 
         // POST api/values
-        [HttpPost]
+        [HttpPost] //Если решил обозначать методы: то тогда обозначай везде(GET)
         public void AddMessage(Message mess)
         {
             messages = db.ReadMessFromFile();
@@ -72,7 +75,7 @@ namespace ServiceChat.Controllers
             return tmpListMess;
         }
 
-        // PUT api/values/5
+        // PUT api/values/5  //Удалять методы 
         public void Put(int id, [FromBody]string value)
         {
         }

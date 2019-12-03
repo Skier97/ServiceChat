@@ -22,6 +22,7 @@ namespace ServiceChat
 
         public void UpdateDbUsers(List<User> users)
         {
+            //Проверку что фал существует по пути из конфига, PAth.IsFileExist()
             string jsonTasks = JsonConvert.SerializeObject(users);
             using (StreamWriter sw = new StreamWriter(WebConfigurationManager.AppSettings["WayToDBUser"], false))
             {
