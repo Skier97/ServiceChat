@@ -69,3 +69,6 @@ C:\Users\Пользователь\Desktop\Projects VS\ServiceChat\ServiceChat\ob
 C:\Users\Пользователь\Desktop\Projects VS\ServiceChat\ServiceChat\obj\Debug\ServiceChat.csproj.CopyComplete
 C:\Users\Пользователь\Desktop\Projects VS\ServiceChat\ServiceChat\obj\Debug\ServiceChat.dll
 C:\Users\Пользователь\Desktop\Projects VS\ServiceChat\ServiceChat\obj\Debug\ServiceChat.pdb
+C:\Users\Пользователь\Desktop\Projects VS\ServiceChat\ServiceChat\bin\System.Web.Cors.dll
+C:\Users\Пользователь\Desktop\Projects VS\ServiceChat\ServiceChat\bin\System.Web.Http.Cors.dll
+C:\Users\Пользователь\Desktop\Projects VS\ServiceChat\ServiceChat\bin\System.Web.Http.Cors.xml
