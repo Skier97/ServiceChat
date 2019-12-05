@@ -54,7 +54,7 @@ namespace ServiceChat.Controllers
                     
                 }
             }
-            return Json(GetAllMessageUser(tmpUser, messages));
+            return Json("Вход успешно выполнен!");
         }
 
         [HttpGet]
@@ -86,7 +86,7 @@ namespace ServiceChat.Controllers
             {
                 if(messages[i].IdRecip == user.Id)
                 {
-                    messages[i].IsRead = true;
+                    //messages[i].IsRead = true;
                     tmpListMess.Add(messages[i]);
                 }
             }
