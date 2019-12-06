@@ -43,18 +43,18 @@ namespace ServiceChat.Controllers
         [HttpGet]
         public IHttpActionResult IsUser(int id, string password)
         {
-            User tmpUser = null;
+            //User tmpUser = null;
             users = db.ReadUserFromDb();
             messages = db.ReadMessFromDb();
             for (int i = 0; i < users.Count; i++)
             {
                 if ((users[i].Id == id) && (users[i].Password == password))
                 {
-                    tmpUser = users[i];
-                    
+                    return Json(users[i].NameUser);
+
                 }
             }
-            return Json("Вход успешно выполнен!");
+            return Json(0);
         }
 
         [HttpGet]
@@ -70,28 +70,13 @@ namespace ServiceChat.Controllers
                     if ((users[i].Id == id) && (users[i].Password == password))
                     {
                         tmpUser = users[i];
-
+                        return Json(GetNewMessageUser(tmpUser, messages));
                     }
                 }
-                return Json(GetNewMessageUser(tmpUser, messages));
+                
             }
             return Json(0);
             
-        }
-
-        private List<Message> GetAllMessageUser(User user, List<Message> messages)
-        {
-            var tmpListMess = new List<Message>();
-            for (int i=0; i<messages.Count; i++)
-            {
-                if(messages[i].IdRecip == user.Id)
-                {
-                    //messages[i].IsRead = true;
-                    tmpListMess.Add(messages[i]);
-                }
-            }
-            db.UpdateDbMess(messages);
-            return tmpListMess;
         }
 
         private List<Message> GetNewMessageUser(User user, List<Message> messages)
