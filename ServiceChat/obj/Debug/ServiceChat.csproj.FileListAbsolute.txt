@@ -72,3 +72,5 @@ C:\Users\Пользователь\Desktop\Projects VS\ServiceChat\ServiceChat\ob
 C:\Users\Пользователь\Desktop\Projects VS\ServiceChat\ServiceChat\bin\System.Web.Cors.dll
 C:\Users\Пользователь\Desktop\Projects VS\ServiceChat\ServiceChat\bin\System.Web.Http.Cors.dll
 C:\Users\Пользователь\Desktop\Projects VS\ServiceChat\ServiceChat\bin\System.Web.Http.Cors.xml
+C:\Users\Пользователь\Desktop\Projects VS\ServiceChat\ServiceChat\bin\System.Data.Common.dll
+C:\Users\Пользователь\Desktop\Projects VS\ServiceChat\ServiceChat\bin\System.Data.SqlClient.dll

@@ -6,6 +6,7 @@ using ServiceChat.Models;
 using System.IO;
 using Newtonsoft.Json;
 using System.Web.Configuration;
+using System.Data.SqlClient;
 
 namespace ServiceChat
 {
@@ -14,20 +15,27 @@ namespace ServiceChat
         public void UpdateDbMess(List<Message> messages)
         {
             string jsonTasks = JsonConvert.SerializeObject(messages);
-            using (StreamWriter sw = new StreamWriter(WebConfigurationManager.AppSettings["WayToDBMess"], false))
+            if (File.Exists(WebConfigurationManager.AppSettings["WayToDBMess"]) == true)
             {
-                sw.WriteLine(jsonTasks);
+                using (StreamWriter sw = new StreamWriter(WebConfigurationManager.AppSettings["WayToDBMess"], false))
+                {
+                    sw.WriteLine(jsonTasks);
+                }
             }
+            
         }
 
         public void UpdateDbUsers(List<User> users)
         {
-            //Проверку что фал существует по пути из конфига, PAth.IsFileExist()
             string jsonTasks = JsonConvert.SerializeObject(users);
-            using (StreamWriter sw = new StreamWriter(WebConfigurationManager.AppSettings["WayToDBUser"], false))
+            if (File.Exists(WebConfigurationManager.AppSettings["WayToDBUser"]) == true)
             {
-                sw.WriteLine(jsonTasks);
+                using (StreamWriter sw = new StreamWriter(WebConfigurationManager.AppSettings["WayToDBUser"], false))
+                {
+                    sw.WriteLine(jsonTasks);
+                }
             }
+                
         }
 
         public List<Message> ReadMessFromDb()
@@ -44,6 +52,27 @@ namespace ServiceChat
 
         public List<User> ReadUserFromDb()
         {
+            string connectionString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=" +
+                     @"C:\Users\Пользователь\Desktop\Projects VS\ServiceChat\ServiceChat\App_Data\DBChat.mdf" +
+                     ";Integrated Security=True;Connect Timeout=30;User Instance=True";
+           // string commandText = "SELECT * FROM Users";
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand myCommand = conn.CreateCommand();
+            myCommand.CommandText = "SELECT * FROM Users";
+            SqlDataReader dataReader = myCommand.ExecuteReader();
+            
+            while (dataReader.Read())
+            {
+               var tmp = dataReader["Id"];
+                var i = 0;
+            }
+            dataReader.Close();
+            conn.Close();
+
+
+
+
             var colUser = new List<User>();
             using (var sr = new StreamReader(WebConfigurationManager.AppSettings["WayToDBUser"]))
             {

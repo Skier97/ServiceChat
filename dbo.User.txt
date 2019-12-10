@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[User]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [NameUser] NCHAR(10) NOT NULL, 
+    [Password] NCHAR(10) NOT NULL
+)
