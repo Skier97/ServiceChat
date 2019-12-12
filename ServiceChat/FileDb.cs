@@ -52,27 +52,6 @@ namespace ServiceChat
 
         public List<User> ReadUserFromDb()
         {
-            string connectionString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=" +
-                     @"C:\Users\Пользователь\Desktop\Projects VS\ServiceChat\ServiceChat\App_Data\DBChat.mdf" +
-                     ";Integrated Security=True;Connect Timeout=30;User Instance=True";
-           // string commandText = "SELECT * FROM Users";
-            SqlConnection conn = new SqlConnection(connectionString);
-            conn.Open();
-            SqlCommand myCommand = conn.CreateCommand();
-            myCommand.CommandText = "SELECT * FROM Users";
-            SqlDataReader dataReader = myCommand.ExecuteReader();
-            
-            while (dataReader.Read())
-            {
-               var tmp = dataReader["Id"];
-                var i = 0;
-            }
-            dataReader.Close();
-            conn.Close();
-
-
-
-
             var colUser = new List<User>();
             using (var sr = new StreamReader(WebConfigurationManager.AppSettings["WayToDBUser"]))
             {

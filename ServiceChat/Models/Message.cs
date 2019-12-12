@@ -2,26 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace ServiceChat.Models
 {
-    public class Message
+    [Table("Messages")]
+    public class Message 
     {
+        [Key]
+        public string IdMessage { get; set; }
         public int IdSend { get; set; }
-        public string NameSend { get; set; }
         public int IdRecip { get; set; }
         public string TextMessage { get; set; }
         public DateTime Time { get; set; }
-        public bool IsRead { get; set; }
+        public int IsRead { get; set; }
 
-        public Message(int idSend, int idRecip, string message, string nameSend ="")
+/*        public Message(int idMessage, int idSend, int idRecip, string message)
         {
+            this.IdMessage = idMessage;
             this.IdSend = idSend;
-            this.NameSend = nameSend;
             this.IdRecip = idRecip;
             this.TextMessage = message;
             this.Time = DateTime.Now;
-            this.IsRead = false;
-        }
+            this.IsRead = 0;
+        }*/
     }
 }
