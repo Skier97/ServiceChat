@@ -11,7 +11,8 @@ namespace ServiceChat.Models
     public class User
     {
         [Key]
-        public int Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]//без нее не получается добавить пользователя
+        public int IdUser { get; set; }
         public string NameUser { get; set; }
         public string Password { get; set; }
 
