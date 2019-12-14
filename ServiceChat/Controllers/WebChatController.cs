@@ -16,7 +16,7 @@ namespace ServiceChat.Controllers
     public class WebChatController : ApiController
     {
         ChatContext dbChat = new ChatContext();
-            //В веб конфиге разобраться с путями, задавать относитльный путь до дб
+        //В веб конфиге разобраться с путями, задавать относитльный путь до дб
 
         FileDb db = new FileDb();
 
@@ -26,7 +26,7 @@ namespace ServiceChat.Controllers
             var users = dbChat.Users;
             int number = 1;
 
-            while(SearchNewNumber(users, number) == true)
+            while (SearchNewNumber(users, number) == true)
             {
                 number++;
             }
@@ -60,9 +60,9 @@ namespace ServiceChat.Controllers
 
             foreach (User u in users)
             {
-                if ((u.IdUser == id)&&(u.Password.Replace(" ", "") == password))
+                if ((u.IdUser == id) && (u.Password.Replace(" ", "") == password))
                 {
-                    return Json(u.NameUser.Replace(" ",""));
+                    return Json(u.NameUser.Replace(" ", ""));
                 }
             }
             return Json(0);
@@ -79,22 +79,22 @@ namespace ServiceChat.Controllers
 
                 foreach (User u in users)
                 {
-                    if ((u.IdUser == id) && (u.Password.Replace(" ","") == password))//Replace, потому что длина паролей у всех разное
+                    if ((u.IdUser == id) && (u.Password.Replace(" ", "") == password))//Replace, потому что длина паролей у всех разное
                     {                                                                    //и остаются пробелы тогда в ячейке из БД
                         tmpUser = u;
-                        
+
                     }
                 }
                 return Json(GetNewMessageUser(tmpUser, messages));//ответ - получение непрочитанных сообщений юзера
             }
             return Json(HttpStatusCode.BadRequest);
-            
+
         }
 
         private List<InfoMessages> GetNewMessageUser(User user, DbSet<Message> messages)
         {
             var tmpListMess = new List<InfoMessages>();
-            
+
             foreach (Message m in messages)
             {
                 if ((m.IdRecip == user.IdUser) && (m.IsRead == 0))
@@ -121,8 +121,8 @@ namespace ServiceChat.Controllers
             {
                 var mess = listMess[i];
                 var user = from us in dbChat.Users
-                               where us.IdUser == mess.IdSend
-                               select us;
+                           where us.IdUser == mess.IdSend
+                           select us;
                 var nameUser = user.FirstOrDefault<User>().NameUser.Replace(" ", "");
                 listMess[i].NameSend = nameUser;
             }
@@ -132,9 +132,9 @@ namespace ServiceChat.Controllers
         private bool SearchNewNumber(DbSet<User> users, int number)
         {
             //bool flagSearch = false;
-            foreach(User us in users)
+            foreach (User us in users)
             {
-                if(us.IdUser == number)
+                if (us.IdUser == number)
                 {
                     return true;
                 }
