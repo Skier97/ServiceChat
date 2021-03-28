@@ -10,7 +10,7 @@ namespace ServiceChat.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "Home Page UpdateTestNew!";
 
             return View();
         }
