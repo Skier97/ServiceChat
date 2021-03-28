@@ -11,6 +11,7 @@ namespace ServiceChat.Controllers
         // GET: Task
         public ActionResult Index()
         {
+            ViewBag.Title = "Task Page to developer!";
             return View();
         }
     }
