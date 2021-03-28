@@ -12,7 +12,7 @@ namespace ServiceChat.Controllers
     public class UserController : ApiController
     {
         Dictionary<int, string> messages = new Dictionary<int, string> { { 1, "message1" }, { 2, "message2" }, { 3, "message3"}, { 3, "message4"} };
-        List<User> users = new List<User>() { new User(1, "Sergey", "pass1"), new User(2, "Olga", "pass2") };
+        List<User> users = new List<User>() { new User(1, "Pavel", "pass1"), new User(2, "Olga", "pass2") };
 
         // GET api/values
         public IHttpActionResult Get()
