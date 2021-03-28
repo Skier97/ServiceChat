@@ -11,7 +11,7 @@ namespace ServiceChat.Controllers
         // GET: Test
         public ActionResult Index()
         {
-            ViewBag.Title = "Test Page to developer!";
+            ViewBag.Title = "Test Page!";
             return View();
         }
     }
